@@ -1,0 +1,59 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="form-group">
+      <div>
+        <label for="userFirstName">
+          First Name :
+        </label>
+        <input type="text" class="form-control" name="firstName" [(ngModel)]="firstNameNgModel" required [placeholder]="firstNamePlaceHolder">
+      </div>
+
+      <div>
+        <label for="userLastName">
+            Last Name :
+        </label>
+        <input type="text" class="form-control" name="lastName" [(ngModel)]="lastNameNgModel" required [placeholder]="lastNamePlaceHolder">
+      </div>
+
+      <div>
+        <label for="userEmail">
+            Email :
+        </label>
+        <input type="email" class="form-control" name="userEmail" [(ngModel)]="emailNgModel" required [placeholder]="emailPlaceHolder">
+      </div>
+
+      <!--For a new user, makes no sense to ask for the existing password => displayed and required only for not new user-->
+      <div [style.display]="!testNew && modify ? 'block':'none'">
+        <label for="userExistingPwd">
+            Actual password :
+        </label>
+        <input type="password" class="form-control" name="userExistingPwd" ngModel [required]="!testNew && modify" placeholder='Actual password'>
+      </div>
+
+      <button class="btn" style="margin-top: 20px" [style.display]="testNew || modify ? 'none':'block'" (click)="modifyPwd()">Change password</button>
+
+      <div [style.display]="modify || testNew ? 'block':'none'">
+        <label for="userNewPwd">
+          Password :
+        </label>
+        <input type="password" class="form-control" name="userNewPwd" ngModel [required]="testNew || modify" placeholder='Type new password'>
+        <small>Password must contain at least 8 characters, including a majuscule, a minuscule and a figure.</small><span [style.display]="unacceptablePwd ? 'block':'none'" style="color:red">✗</span>
+      </div>
+
+      <div [style.display]="modify || testNew ? 'block':'none'">
+        <label for="userNewPwdConfirm">
+          Confirm password :
+        </label>
+        <input type="password" class="form-control" name="userNewPwdConfirm" ngModel [required]="testNew || modify" placeholder="Confirm new password">
+      </div>
+    </div>
+
+    <!--Button "create" is displayed for new user, button "modify" for existing user-->
+    <div class="row" style="display: flex; flex-direction: row; width: 100%; justify-content: space-between; margin: 50px auto;">
+      <button class="btn" type="submit" [disabled]="f.invalid" [style.display]="!testNew ? 'none':'block'">Create user</button>
+      <button class="btn" type="submit" [disabled]="f.invalid" [style.display]="testNew ? 'none':'block'">Modify user</button>
+      <button class="btn" [routerLink]="['/users']">Cancel</button>
+    </div>
+
+  </form>
+</div>

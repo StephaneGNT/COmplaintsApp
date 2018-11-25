@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-lg-12">
+      <h3 style="margin-bottom:25px">USERS</h3>
+      <table class="table table-hover table-striped">
+        <thead class="thead-dark">
+          <tr>
+              <th>Full name</th>
+              <th class="d-none d-md-table-cell">E-mail</th>
+              <th class="d-none d-md-table-cell">Rôle</th>
+              <th></th>
+              <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td> {{user.firstName}} {{user.lastName}}</td>
+            <td class="d-none d-md-table-cell"> {{user.email}} </td>
+            <td class="d-none d-md-table-cell"> {{user.role}} </td>
+            <td><button [routerLink]="['/users/'+user.id]" [disabled]="loggedUser.email!=user.email">✎</button></td>
+            <td><button (click)=eraseUser(user.id) [disabled]="loggedUser.role!='Admin'">✗</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <button [routerLink]="['/users/new']" class="btn" style="margin-top: 25px">New user</button>
+    </div>
+  </div>
+</div>

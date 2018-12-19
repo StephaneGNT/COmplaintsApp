@@ -16,15 +16,15 @@ constructor(
     loggedUser={};
 
     signIn(givenEmail, givenPwd) {
-        if(this.checkUserInfo(givenEmail, givenPwd)){
+        // if(this.checkUserInfo(givenEmail, givenPwd)){
             this.isAuth=true;
             this.loggedUser=this.implementLoggedUser(givenEmail);
             this.messageService.openSnackBar("Logged in successfully","success");
             this.router.navigate(['complaints']);
-        }
-        else{
-            this.messageService.openSnackBar("Wrong ID and/or password","fail");
-        }
+        // }
+        // else{
+        //     this.messageService.openSnackBar("Wrong ID and/or password","fail");
+        // }
         
     }
 

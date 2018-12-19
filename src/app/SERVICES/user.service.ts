@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../CLASSES/user';
+import axios from 'axios';
 
 
 @Injectable()
@@ -13,35 +14,45 @@ export class UserService {
   public loggedUser;
 
   users=[
-    {
-      firstName: "Damien",
-      lastName: "Dubois",
-      role: "SimpleUser",
-      password: "DamienDubois",
-      email:"damien.dubois@gmail.com",
-      id:0
-    },
-    {
-      firstName: "Audrey",
-      lastName: "Quintard",
-      role: "SimpleUser",
-      password: "AudreyQuintard",
-      email:"audrey.quintard@gmail.com",
-      id:1
-    },
-    {
-      firstName: "Stéf",
-      lastName: "Guinot",
-      role: "Admin",
-      password: "StephaneGuinot",
-      email:"stephane.guinot@gmail.com",
-      id:2
-    }
+    // {
+    //   firstName: "Damien",
+    //   lastName: "Dubois",
+    //   role: "SimpleUser",
+    //   password: "DamienDubois",
+    //   email:"damien.dubois@gmail.com",
+    //   id:0
+    // },
+    // {
+    //   firstName: "Audrey",
+    //   lastName: "Quintard",
+    //   role: "SimpleUser",
+    //   password: "AudreyQuintard",
+    //   email:"audrey.quintard@gmail.com",
+    //   id:1
+    // },
+    // {
+    //   firstName: "Stéf",
+    //   lastName: "Guinot",
+    //   role: "Admin",
+    //   password: "StephaneGuinot",
+    //   email:"stephane.guinot@gmail.com",
+    //   id:2
+    // }
   ];
 
 
-  getUsers(){
+  async getUsers(){
+    const response = await axios.get('http://localhost:5000/users')
+    this.users = response.data;
     return this.users;
+    // axios
+    //   .get('http://localhost:5000/users')
+    //   .then(response => {
+    //     console.log(response.data[0]);
+    //     this.users  = response.data[0];
+    //   })
+    // console.log("this.getUsers", this.users)
+    // return this.users;
   }
 
   addUser(userInfo){
@@ -53,7 +64,10 @@ export class UserService {
       userInfo.userEmail,
       this.users.length,
     );
-    this.users.push(newUser);
+    // this.users.push(newUser);
+    axios.post('http://localhost:5000/users/new',{
+      body: newUser
+    });
     this.router.navigate(['users']);
   }
 

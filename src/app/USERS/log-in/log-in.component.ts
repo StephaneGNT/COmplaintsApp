@@ -23,6 +23,7 @@ export class LogInComponent implements OnInit {
   isVisible=false;
   
   ngOnInit() {
+    // this.userService.getUsers();
   }
 
   onSubmit(form:NgForm){

@@ -1,0 +1,6 @@
+{
+  "apps":[{
+    "name":"complaintsapp-backend-2018",
+    "script":"./server/app.js"
+  }]
+}

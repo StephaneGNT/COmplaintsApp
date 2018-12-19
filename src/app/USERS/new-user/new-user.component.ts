@@ -100,7 +100,7 @@ export class NewUserComponent implements OnInit {
     var localCheckForm=true;
 
     // Check consistency between new password and old password (if existing)
-    if(userInfo.userNewPwd && userInfo.userNewPwdConfirm && userInfo.userNewPwd!=userInfo.userNewPwdConfirm){
+    if(userInfo.userNewPwd && userInfo.userNewPwdConfirm && userInfo.userNewPwd !== userInfo.userNewPwdConfirm){
       this.messageService.openSnackBar("Both passwords must be identical","fail");
       localCheckForm=false;
     }

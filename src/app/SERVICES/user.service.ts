@@ -13,38 +13,18 @@ export class UserService {
 
   public loggedUser;
 
-  users=[
-    // {
-    //   firstName: "Damien",
-    //   lastName: "Dubois",
-    //   role: "SimpleUser",
-    //   password: "DamienDubois",
-    //   email:"damien.dubois@gmail.com",
-    //   id:0
-    // },
-    // {
-    //   firstName: "Audrey",
-    //   lastName: "Quintard",
-    //   role: "SimpleUser",
-    //   password: "AudreyQuintard",
-    //   email:"audrey.quintard@gmail.com",
-    //   id:1
-    // },
-    // {
-    //   firstName: "Stéf",
-    //   lastName: "Guinot",
-    //   role: "Admin",
-    //   password: "StephaneGuinot",
-    //   email:"stephane.guinot@gmail.com",
-    //   id:2
-    // }
-  ];
+  users=[];
 
 
   async getUsers(){
-    const response = await axios.get('http://localhost:5000/users')
-    this.users = response.data;
-    return this.users;
+    try {
+      const response = await (axios.get('http://localhost:5000/users'));
+      this.users = response.data;
+      console.log(this.users)
+      return this.users;
+    } catch (e) {
+      console.log(e);
+    }
     // axios
     //   .get('http://localhost:5000/users')
     //   .then(response => {

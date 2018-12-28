@@ -17,8 +17,8 @@ export class UserListComponent implements OnInit {
     private authService:AuthService,
   ) {}
 
-   async ngOnInit() {
-    this.users= await this.userService.getUsers();
+   ngOnInit() {
+    this.users= this.userService.getUsers();
     // Gets logged User
     this.loggedUser=this.authService.getLoggedUser();
   }

@@ -8,7 +8,7 @@ import axios from 'axios';
 export class UserService {
 
   constructor(
-    private router:Router,
+    private router: Router,
   ) { }
 
   public loggedUser;
@@ -51,18 +51,18 @@ export class UserService {
     this.router.navigate(['users']);
   }
 
-  updateUser(userInfo, index){
-    if(this.users[index].firstName!=userInfo.firstName){
-      this.users[index].firstName=userInfo.firstName;
+  updateUser(userInfo, index) {
+    if (this.users[index].firstName !== userInfo.firstName) {
+      this.users[index].firstName = userInfo.firstName;
     }
-    if(this.users[index].lastName!=userInfo.lastName){
-      this.users[index].lastName=userInfo.lastName;
+    if (this.users[index].lastName !== userInfo.lastName) {
+      this.users[index].lastName = userInfo.lastName;
     }
-    if(this.users[index].email!=userInfo.userEmail){
-      this.users[index].email=userInfo.userEmail;
+    if (this.users[index].email !== userInfo.userEmail) {
+      this.users[index].email = userInfo.userEmail;
     }
-    if(this.users[index].password!=userInfo.userNewPwd && userInfo.userNewPwd!=''){
-      this.users[index].password=userInfo.userNewPwd;
+    if(this.users[index].password !== userInfo.userNewPwd && userInfo.userNewPwd !== '') {
+      this.users[index].password = userInfo.userNewPwd;
     }
     this.router.navigate(['users']);
   }
